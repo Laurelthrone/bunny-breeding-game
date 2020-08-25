@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class TestBehavior : MonoBehaviour
 {
+    public GameObject prefab;
+    public GameObject agoutiLayer;
 
     Genome genome;
-    SpriteRenderer sprite;
+    SpriteRenderer sprite, agoutiSprite;
+    Sprite agouti, tanOtter;
 
-    Color black, brown;
+    Color black, brown, agoutiBlack, agoutiBrown;
     
     int[] phenotype;
 
@@ -19,9 +22,16 @@ public class TestBehavior : MonoBehaviour
 
         ColorUtility.TryParseHtmlString("#3A2222", out brown);
         ColorUtility.TryParseHtmlString("#252323", out black);
+        ColorUtility.TryParseHtmlString("#606060", out agoutiBlack);
+        ColorUtility.TryParseHtmlString("#745353", out agoutiBrown);
+
         sprite = GetComponent<SpriteRenderer>();
+        agoutiSprite = agoutiLayer.GetComponent<SpriteRenderer>();
+        agoutiSprite.enabled = true;
+
         genome = new Genome();
         phenotype = genome.phenotype;
+        
 
         Debug.Log("DISPLAYING GENOME:");
 
@@ -35,6 +45,7 @@ public class TestBehavior : MonoBehaviour
                 break;
             case 2:
                 Debug.Log("A1 = " + genome.genes[0,0] + "|A2 = " + genome.genes[1,0] + "|Phenotype = " +  "Self");
+                agoutiSprite.enabled = false;
                 break;
         }
 
@@ -43,10 +54,12 @@ public class TestBehavior : MonoBehaviour
             case 0:
                 Debug.Log("B1 = " + genome.genes[0,1] + " | B2 = " + genome.genes[1,1] + " | Phenotype = " + "Black");
                 sprite.color = black;
+                agoutiSprite.color = agoutiBlack;
                 break;
             case 1:
                 Debug.Log("B1 = " + genome.genes[0,1] + " | B2 = " + genome.genes[1,1] + " | Phenotype = " + "Chocolate");
                 sprite.color = brown;
+                agoutiSprite.color = agoutiBrown;
                 break;
         }
 
@@ -101,7 +114,8 @@ public class TestBehavior : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(gameObject);
+            GameObject newBun = Instantiate(prefab);
+            newBun.name = gameObject.name;
             Destroy(gameObject);
         }
     }
