@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,8 +12,11 @@ public class TestBehavior : MonoBehaviour
    
     SpriteRenderer baseSprite, patternLayer1Sprite, eyeSprite;
     public Sprite agouti, tanOtter, himalayan;
+    public string chillaLerp, sablerp;
 
     Color black, chocolate, agoutiBlack, agoutiChocolate, blackTan, chocolateTan;
+
+    Color chinchillaLerp, sableLerp;
     
     int[] phenotype;
 
@@ -23,10 +27,11 @@ public class TestBehavior : MonoBehaviour
 
         ColorUtility.TryParseHtmlString("#2E2521", out chocolate);
         ColorUtility.TryParseHtmlString("#252323", out black);
-        ColorUtility.TryParseHtmlString("#606060", out agoutiBlack);
-        ColorUtility.TryParseHtmlString("#745353", out agoutiChocolate);
+        ColorUtility.TryParseHtmlString("#312F2C", out agoutiBlack);
+        ColorUtility.TryParseHtmlString("#413939", out agoutiChocolate);
         ColorUtility.TryParseHtmlString("#A48B73", out blackTan);
         ColorUtility.TryParseHtmlString("#CDB59E", out chocolateTan);
+        ColorUtility.TryParseHtmlString("#" + chillaLerp, out chinchillaLerp);
 
         baseSprite = GetComponent<SpriteRenderer>();
         patternLayer1Sprite = patternLayer1.GetComponent<SpriteRenderer>();
@@ -39,18 +44,36 @@ public class TestBehavior : MonoBehaviour
 
 
         Debug.Log("DISPLAYING GENOME:");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        ColorUtility.TryParseHtmlString("#" + chillaLerp, out chinchillaLerp);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject newBun = Instantiate(prefab);
+            newBun.name = gameObject.name;
+            Destroy(gameObject);
+        }
 
         switch (phenotype[0])
         {
+            //Case for agouti pattern
             case 0:
                 Debug.Log("A1 = " + genome.genes[0, 0] + "| A2 = " + genome.genes[1, 0] + "| Phenotype = " + "Agouti");
                 patternLayer1Sprite.sprite = agouti;
                 break;
+
+            //Case for tan/otter pattern
             case 1:
                 Debug.Log("A1 = " + genome.genes[0, 0] + " | A2 = " + genome.genes[1, 0] + " | Phenotype = " + "Tan/Otter");
                 patternLayer1Sprite.sprite = tanOtter;
                 patternLayer1Sprite.color = blackTan;
                 break;
+
+            //Case for self pattern
             case 2:
                 Debug.Log("A1 = " + genome.genes[0, 0] + "|A2 = " + genome.genes[1, 0] + "|Phenotype = " + "Self");
                 patternLayer1Sprite.enabled = false;
@@ -59,11 +82,14 @@ public class TestBehavior : MonoBehaviour
 
         switch (phenotype[1])
         {
+            //Case for black base
             case 0:
                 Debug.Log("B1 = " + genome.genes[0, 1] + " | B2 = " + genome.genes[1, 1] + " | Phenotype = " + "Black");
                 baseSprite.color = black;
                 if (patternLayer1Sprite.sprite == agouti) patternLayer1Sprite.color = agoutiBlack;
                 break;
+
+            //Case for chocolate base
             case 1:
                 Debug.Log("B1 = " + genome.genes[0, 1] + " | B2 = " + genome.genes[1, 1] + " | Phenotype = " + "Chocolate");
                 baseSprite.color = chocolate;
@@ -77,15 +103,29 @@ public class TestBehavior : MonoBehaviour
 
         switch (phenotype[2])
         {
+            //Case for normal
             case 0:
                 Debug.Log("C1 = " + genome.genes[0, 2] + " | C2 = " + genome.genes[1, 2] + " | Phenotype = " + "Normal");
                 break;
+
+            //Case for chinchillas
             case 1:
                 Debug.Log("C1 = " + genome.genes[0, 2] + " | C2 = " + genome.genes[1, 2] + " | Phenotype = " + "Dark chinchilla");
+                
+                //Self chins look like normal self
+                if (phenotype[0] == 2) break;
+                
+                //Adjust coat color based on chin modifier
+                baseSprite.color = Color.Lerp(baseSprite.color, chinchillaLerp, .5f);
+                patternLayer1Sprite.color = Color.Lerp(patternLayer1Sprite.color, chinchillaLerp, .5f);
                 break;
+
+            //Case for light chinchilla / sable
             case 2:
                 Debug.Log("C1 = " + genome.genes[0, 2] + " | C2 = " + genome.genes[1, 2] + " | Phenotype = " + "Light chinhilla");
                 break;
+
+            //Case for Himalayan/Californian pattern
             case 3:
                 baseSprite.color = new Color(1, 1, 1);
                 eyeSprite.enabled = true;
@@ -93,6 +133,8 @@ public class TestBehavior : MonoBehaviour
                 patternLayer1Sprite.color = phenotype[1] == 1 ? black : chocolate;
                 patternLayer1Sprite.enabled = true;
                 return;
+
+            //Case for REW/albino
             case 4:
                 Debug.Log("C1 = " + genome.genes[0, 2] + " | C2 = " + genome.genes[1, 2] + " | Phenotype = " + "Albino (overrides all)");
                 baseSprite.color = new Color(1, 1, 1);
@@ -103,9 +145,12 @@ public class TestBehavior : MonoBehaviour
 
         switch (phenotype[3])
         {
+            //Case for normal
             case 0:
                 Debug.Log("D1 = " + genome.genes[0, 3] + " | D2 = " + genome.genes[1, 3] + " | Phenotype = " + "Full strength");
                 break;
+            
+            //Case for diluted
             case 1:
                 Debug.Log("D1 = " + genome.genes[0, 3] + " | D2 = " + genome.genes[1, 3] + " | Phenotype = " + "Dilute");
                 break;
@@ -113,29 +158,26 @@ public class TestBehavior : MonoBehaviour
 
         switch (phenotype[4])
         {
+            //Case for steels
             case 0:
                 Debug.Log("E1 = " + genome.genes[0, 4] + " | E2 = " + genome.genes[1, 4] + " | Phenotype = " + "Steel");
                 break;
+
+            //Case for normal
             case 1:
                 Debug.Log("E1 = " + genome.genes[0, 4] + " | E2 = " + genome.genes[1, 4] + " | Phenotype = " + "Normal");
                 break;
+
+            //Case for harlequins
             case 2:
-                Debug.Log("E1 = " + genome.genes[0, 4] + " | E2 = " + genome.genes[1, 4] + " | Phenotype = " + "Japanese");
+                Debug.Log("E1 = " + genome.genes[0, 4] + " | E2 = " + genome.genes[1, 4] + " | Phenotype = " + "Harlequin");
                 break;
+
+            //Case for nonextension (makes agoutis look like selves)
             case 3:
                 Debug.Log("E1 = " + genome.genes[0, 4] + " | E2 = " + genome.genes[1, 4] + " | Phenotype = " + "Nonextension (overrides A gene)");
+                if (phenotype[0] == 0) patternLayer1Sprite.enabled = false;
                 break;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GameObject newBun = Instantiate(prefab);
-            newBun.name = gameObject.name;
-            Destroy(gameObject);
         }
     }
 }
