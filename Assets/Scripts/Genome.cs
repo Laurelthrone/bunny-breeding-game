@@ -7,10 +7,10 @@ using UnityEngine;
 public class Genome
 {
     //Number of genes in each half of the genome.
-    public const int numGenes = 5; //Will be at least 8 genes when properly implemented  
+    public const int numGenes = 7; //Will be at least 8 genes when properly implemented  
 
     //geneAlleles contains the number of possible alleles for each gene.
-    public static readonly int[] geneAlleles = new int[numGenes] { 3, 2, 5, 2, 4};
+    public static readonly int[] geneAlleles = new int[numGenes] { 3, 2, 5, 2, 4, 0, 2};
 
     //Genome consists of a 2D array of genes. 
     //One set [0,] is inherited from the father. 
@@ -79,7 +79,8 @@ public class Genome
         phenotype = new int[numGenes];
         for (int i = 0; i < numGenes; i++)
         {
-            phenotype[i] = Math.Min(genes[0,i], genes[1,i]);
+            if (i == 6 && genes[0, i] == genes[1, i] && genes[0, i] == 0) phenotype[i] = 2;
+            else phenotype[i] = Math.Min(genes[0,i], genes[1,i]);
         }
     }
 

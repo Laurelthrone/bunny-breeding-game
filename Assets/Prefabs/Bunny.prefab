@@ -70,9 +70,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 043d4a67f048a8e4ab2982541fd72f79, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_SortingOrder: 50
+  m_Sprite: {fileID: 21300000, guid: 71e89ae0166663447b7458329c421ebd, type: 3}
+  m_Color: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -266,12 +266,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 7974682555750032858}
   patternLayer1: {fileID: 7974682555296122147}
+  patternLayer2: {fileID: 5775810970234425054}
   eyeLayer: {fileID: 8282767853106457467}
   agouti: {fileID: 21300000, guid: 8ac00ac7ccaa78848a85dc6ff57f4109, type: 3}
   tanOtter: {fileID: 21300000, guid: 9a92426f739f52e48afd5bbf608cb4ac, type: 3}
   himalayan: {fileID: 21300000, guid: 043d4a67f048a8e4ab2982541fd72f79, type: 3}
-  chillaLerp: 99b
-  sablerp: 99c
+  sableMarten: {fileID: 21300000, guid: 71e89ae0166663447b7458329c421ebd, type: 3}
+  inspectorChinLerp: 99b
+  inspectorSableLerp: B99
+  inspectorDiluteLerp: 556
 --- !u!50 &7974682555750032833
 Rigidbody2D:
   serializedVersion: 4
