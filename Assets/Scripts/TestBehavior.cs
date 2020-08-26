@@ -14,7 +14,7 @@ public class TestBehavior : MonoBehaviour
     public Sprite agouti, tanOtter, himalayan;
     public string chillaLerp, sablerp;
 
-    Color black, chocolate, agoutiBlack, agoutiChocolate, blackTan, chocolateTan;
+    Color black, chocolate, agoutiPatternBlack, agoutiBaseBlack, agoutiBaseChocolate, agoutiPatternChocolate, blackTan, chocolateTan;
 
     Color chinchillaLerp, sableLerp;
     
@@ -25,13 +25,16 @@ public class TestBehavior : MonoBehaviour
     {
         gameObject.transform.position = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0, 0);
 
-        ColorUtility.TryParseHtmlString("#2E2521", out chocolate);
+        ColorUtility.TryParseHtmlString("#352620", out chocolate);
         ColorUtility.TryParseHtmlString("#252323", out black);
-        ColorUtility.TryParseHtmlString("#312F2C", out agoutiBlack);
-        ColorUtility.TryParseHtmlString("#413939", out agoutiChocolate);
+        ColorUtility.TryParseHtmlString("#353535", out agoutiBaseBlack);
+        ColorUtility.TryParseHtmlString("#877465", out agoutiPatternBlack); 
+        ColorUtility.TryParseHtmlString("#41362D", out agoutiBaseChocolate);
+        ColorUtility.TryParseHtmlString("#856B56", out agoutiPatternChocolate);
         ColorUtility.TryParseHtmlString("#A48B73", out blackTan);
         ColorUtility.TryParseHtmlString("#CDB59E", out chocolateTan);
         ColorUtility.TryParseHtmlString("#" + chillaLerp, out chinchillaLerp);
+        ColorUtility.TryParseHtmlString("#" + sablerp, out sableLerp);
 
         baseSprite = GetComponent<SpriteRenderer>();
         patternLayer1Sprite = patternLayer1.GetComponent<SpriteRenderer>();
@@ -50,6 +53,7 @@ public class TestBehavior : MonoBehaviour
     void Update()
     {
         ColorUtility.TryParseHtmlString("#" + chillaLerp, out chinchillaLerp);
+        ColorUtility.TryParseHtmlString("#" + sablerp, out sableLerp);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -58,12 +62,44 @@ public class TestBehavior : MonoBehaviour
             Destroy(gameObject);
         }
 
+        switch (phenotype[1])
+        {
+            //Case for black base
+            case 0:
+                Debug.Log("B1 = " + genome.genes[0, 1] + " | B2 = " + genome.genes[1, 1] + " | Phenotype = " + "Black");
+                baseSprite.color = black;
+                if (patternLayer1Sprite.sprite == agouti) patternLayer1Sprite.color = agoutiPatternBlack;
+                break;
+
+            //Case for chocolate base
+            case 1:
+                Debug.Log("B1 = " + genome.genes[0, 1] + " | B2 = " + genome.genes[1, 1] + " | Phenotype = " + "Chocolate");
+                baseSprite.color = chocolate;
+                if (patternLayer1Sprite.sprite == agouti)
+                {
+                    patternLayer1Sprite.color = agoutiPatternChocolate;
+                }
+                else patternLayer1Sprite.color = chocolateTan;
+                break;
+        }
+
         switch (phenotype[0])
         {
             //Case for agouti pattern
             case 0:
                 Debug.Log("A1 = " + genome.genes[0, 0] + "| A2 = " + genome.genes[1, 0] + "| Phenotype = " + "Agouti");
                 patternLayer1Sprite.sprite = agouti;
+
+                if (phenotype[1] == 0)
+                {
+                    patternLayer1Sprite.color = agoutiPatternBlack;
+                    baseSprite.color = agoutiBaseBlack;
+                }
+                else
+                {
+                    patternLayer1Sprite.color = agoutiPatternChocolate;
+                    baseSprite.color = agoutiBaseChocolate;
+                }
                 break;
 
             //Case for tan/otter pattern
@@ -80,26 +116,6 @@ public class TestBehavior : MonoBehaviour
                 break;
         }
 
-        switch (phenotype[1])
-        {
-            //Case for black base
-            case 0:
-                Debug.Log("B1 = " + genome.genes[0, 1] + " | B2 = " + genome.genes[1, 1] + " | Phenotype = " + "Black");
-                baseSprite.color = black;
-                if (patternLayer1Sprite.sprite == agouti) patternLayer1Sprite.color = agoutiBlack;
-                break;
-
-            //Case for chocolate base
-            case 1:
-                Debug.Log("B1 = " + genome.genes[0, 1] + " | B2 = " + genome.genes[1, 1] + " | Phenotype = " + "Chocolate");
-                baseSprite.color = chocolate;
-                if (patternLayer1Sprite.sprite == agouti)
-                {
-                    patternLayer1Sprite.color = agoutiChocolate;
-                }
-                else patternLayer1Sprite.color = chocolateTan;
-                break;
-        }
 
         switch (phenotype[2])
         {
@@ -110,7 +126,7 @@ public class TestBehavior : MonoBehaviour
 
             //Case for chinchillas
             case 1:
-                Debug.Log("C1 = " + genome.genes[0, 2] + " | C2 = " + genome.genes[1, 2] + " | Phenotype = " + "Dark chinchilla");
+                Debug.Log("C1 = " + genome.genes[0, 2] + " | C2 = " + genome.genes[1, 2] + " | Phenotype = " + "Chin");
                 
                 //Self chins look like normal self
                 if (phenotype[0] == 2) break;
@@ -122,7 +138,12 @@ public class TestBehavior : MonoBehaviour
 
             //Case for light chinchilla / sable
             case 2:
-                Debug.Log("C1 = " + genome.genes[0, 2] + " | C2 = " + genome.genes[1, 2] + " | Phenotype = " + "Light chinhilla");
+                Debug.Log("C1 = " + genome.genes[0, 2] + " | C2 = " + genome.genes[1, 2] + " | Phenotype = " + "Sable");
+                if (phenotype[0] == 2) break;
+
+                //Adjust coat color based on chin modifier
+                baseSprite.color = Color.Lerp(baseSprite.color, sableLerp, .5f);
+                patternLayer1Sprite.color = Color.Lerp(patternLayer1Sprite.color, sableLerp, .5f);
                 break;
 
             //Case for Himalayan/Californian pattern
