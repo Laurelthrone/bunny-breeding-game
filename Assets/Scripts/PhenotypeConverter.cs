@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PhenotypeConverter : MonoBehaviour
 {
-    public GameObject prefab;
+    public GameObject prefab, spot;
     public GameObject patternLayer1, patternLayer2, eyeLayer;
 
     Genome genome;
@@ -41,7 +41,8 @@ public class PhenotypeConverter : MonoBehaviour
         patternLayer1Sprite = patternLayer1.GetComponent<SpriteRenderer>();
         patternLayer2Sprite = patternLayer2.GetComponent<SpriteRenderer>();
         eyeSprite = eyeLayer.GetComponent<SpriteRenderer>();
-        eyeSprite.enabled = false;
+        eyeSprite.color = new Color(0, 0, 0);
+        eyeSprite.enabled = true;
         patternLayer2Sprite.enabled = false;
         patternLayer1Sprite.enabled = true;
 
@@ -50,6 +51,12 @@ public class PhenotypeConverter : MonoBehaviour
 
 
         Debug.Log("DISPLAYING GENOME:");
+
+        int maxSpots = UnityEngine.Random.Range(1, 10);
+        for (int i = 0; i < maxSpots; i++)
+        {
+            Instantiate(spot, gameObject.transform);
+        }
     }
 
     // Update is called once per frame
@@ -169,6 +176,7 @@ public class PhenotypeConverter : MonoBehaviour
             //Case for Himalayan/Californian pattern
             case 3:
                 baseSprite.color = new Color(1, 1, 1);
+                eyeSprite.color = new Color(1, 1, 1);
                 eyeSprite.enabled = true;
                 patternLayer2Sprite.color = phenotype[1] == 1 ? chocolate : black;
                 patternLayer2Sprite.sprite = himalayan;
@@ -180,6 +188,7 @@ public class PhenotypeConverter : MonoBehaviour
             case 4:
                 Debug.Log("C1 = " + genome.genes[0, 2] + " | C2 = " + genome.genes[1, 2] + " | Phenotype = " + "Albino (overrides all)");
                 baseSprite.color = new Color(1, 1, 1);
+                eyeSprite.color = new Color(1, 1, 1);
                 patternLayer1Sprite.enabled = false;
                 patternLayer2Sprite.enabled = false;
                 eyeSprite.enabled = true;
@@ -238,5 +247,6 @@ public class PhenotypeConverter : MonoBehaviour
                 gameObject.transform.localScale = new Vector3(.7f, .7f, 1);
                 break;
         }
+
     }
 }
