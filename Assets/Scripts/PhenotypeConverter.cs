@@ -23,7 +23,6 @@ public class PhenotypeConverter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.transform.position = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0, 0);
 
         ColorUtility.TryParseHtmlString("#352620", out chocolate);
         ColorUtility.TryParseHtmlString("#252323", out black);
@@ -52,11 +51,17 @@ public class PhenotypeConverter : MonoBehaviour
 
         Debug.Log("DISPLAYING GENOME:");
 
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.name == "Spot(Clone)") Destroy(child.gameObject);
+        }
         int maxSpots = UnityEngine.Random.Range(1, 10);
         for (int i = 0; i < maxSpots; i++)
         {
             Instantiate(spot, gameObject.transform);
         }
+
+        gameObject.transform.position = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0, 0);
     }
 
     // Update is called once per frame
