@@ -13,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Obstacle
   - 
   - 
   - 
@@ -40,4 +40,244 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 1
+    uniqueID: 3481631997
+    locked: 0
+  - name: 2
+    uniqueID: 1931125281
+    locked: 0
+  - name: 3
+    uniqueID: 1347566641
+    locked: 0
+  - name: 4
+    uniqueID: 3245946447
+    locked: 0
+  - name: 5
+    uniqueID: 2885005649
+    locked: 0
+  - name: 6
+    uniqueID: 3160414031
+    locked: 0
+  - name: 7
+    uniqueID: 1027106891
+    locked: 0
+  - name: 8
+    uniqueID: 1178337407
+    locked: 0
+  - name: 9
+    uniqueID: 1754386427
+    locked: 0
+  - name: 10
+    uniqueID: 2354556049
+    locked: 0
+  - name: 11
+    uniqueID: 1951863377
+    locked: 0
+  - name: 12
+    uniqueID: 1534799249
+    locked: 0
+  - name: 13
+    uniqueID: 3111029075
+    locked: 0
+  - name: 14
+    uniqueID: 1117169607
+    locked: 0
+  - name: 15
+    uniqueID: 3302309477
+    locked: 0
+  - name: 16
+    uniqueID: 3780513709
+    locked: 0
+  - name: 17
+    uniqueID: 3413755181
+    locked: 0
+  - name: 18
+    uniqueID: 3677705555
+    locked: 0
+  - name: 19
+    uniqueID: 694592905
+    locked: 0
+  - name: 20
+    uniqueID: 3507211421
+    locked: 0
+  - name: 21
+    uniqueID: 1844480947
+    locked: 0
+  - name: 22
+    uniqueID: 3673329691
+    locked: 0
+  - name: 23
+    uniqueID: 2553740737
+    locked: 0
+  - name: 24
+    uniqueID: 643035737
+    locked: 0
+  - name: 25
+    uniqueID: 377355577
+    locked: 0
+  - name: 26
+    uniqueID: 3346460003
+    locked: 0
+  - name: 27
+    uniqueID: 564109939
+    locked: 0
+  - name: 28
+    uniqueID: 208144755
+    locked: 0
+  - name: 29
+    uniqueID: 4247128935
+    locked: 0
+  - name: 30
+    uniqueID: 3352364931
+    locked: 0
+  - name: 31
+    uniqueID: 3993075041
+    locked: 0
+  - name: 32
+    uniqueID: 4104950873
+    locked: 0
+  - name: 33
+    uniqueID: 3605557815
+    locked: 0
+  - name: 34
+    uniqueID: 3984208125
+    locked: 0
+  - name: 35
+    uniqueID: 3266291185
+    locked: 0
+  - name: 36
+    uniqueID: 3286746557
+    locked: 0
+  - name: 37
+    uniqueID: 2558684255
+    locked: 0
+  - name: 38
+    uniqueID: 1060626137
+    locked: 0
+  - name: 39
+    uniqueID: 773258295
+    locked: 0
+  - name: 40
+    uniqueID: 2062173345
+    locked: 0
+  - name: 41
+    uniqueID: 562274559
+    locked: 0
+  - name: 42
+    uniqueID: 2234536671
+    locked: 0
+  - name: 43
+    uniqueID: 1761746029
+    locked: 0
+  - name: 44
+    uniqueID: 3189225189
+    locked: 0
+  - name: 45
+    uniqueID: 3613032245
+    locked: 0
+  - name: 46
+    uniqueID: 3414251783
+    locked: 0
+  - name: 47
+    uniqueID: 1404969329
+    locked: 0
+  - name: 48
+    uniqueID: 1010248383
+    locked: 0
+  - name: 49
+    uniqueID: 626320685
+    locked: 0
+  - name: 50
+    uniqueID: 1303473639
+    locked: 0
+  - name: 51
+    uniqueID: 2811377435
+    locked: 0
+  - name: 52
+    uniqueID: 1554685205
+    locked: 0
+  - name: 53
+    uniqueID: 943562871
+    locked: 0
+  - name: 54
+    uniqueID: 713191049
+    locked: 0
+  - name: 55
+    uniqueID: 501708141
+    locked: 0
+  - name: 56
+    uniqueID: 354365627
+    locked: 0
+  - name: 57
+    uniqueID: 243181087
+    locked: 0
+  - name: 58
+    uniqueID: 1004958187
+    locked: 0
+  - name: 59
+    uniqueID: 3927727655
+    locked: 0
+  - name: 60
+    uniqueID: 721187433
+    locked: 0
+  - name: 61
+    uniqueID: 1919879907
+    locked: 0
+  - name: 62
+    uniqueID: 1564355395
+    locked: 0
+  - name: 63
+    uniqueID: 1455062935
+    locked: 0
+  - name: 64
+    uniqueID: 1573718489
+    locked: 0
+  - name: 65
+    uniqueID: 3096016665
+    locked: 0
+  - name: 66
+    uniqueID: 2652691875
+    locked: 0
+  - name: 67
+    uniqueID: 1973699305
+    locked: 0
+  - name: 68
+    uniqueID: 3485181063
+    locked: 0
+  - name: 69
+    uniqueID: 1708807695
+    locked: 0
+  - name: 70
+    uniqueID: 2902883327
+    locked: 0
+  - name: 71
+    uniqueID: 3832855493
+    locked: 0
+  - name: 72
+    uniqueID: 3304832467
+    locked: 0
+  - name: 73
+    uniqueID: 562830361
+    locked: 0
+  - name: 74
+    uniqueID: 2330135863
+    locked: 0
+  - name: 75
+    uniqueID: 326076681
+    locked: 0
+  - name: 76
+    uniqueID: 34618917
+    locked: 0
+  - name: 77
+    uniqueID: 650913407
+    locked: 0
+  - name: 78
+    uniqueID: 456517649
+    locked: 0
+  - name: 79
+    uniqueID: 1493505763
+    locked: 0
+  - name: 80
+    uniqueID: 3355401033
     locked: 0

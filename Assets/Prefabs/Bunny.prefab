@@ -339,7 +339,10 @@ GameObject:
   - component: {fileID: 9076429709320733099}
   - component: {fileID: 9076429709320733097}
   - component: {fileID: 9076429709320733103}
-  - component: {fileID: 9076429709320733096}
+  - component: {fileID: 6356942256795104389}
+  - component: {fileID: 2549857835503774789}
+  - component: {fileID: 179606133}
+  - component: {fileID: 179606139}
   m_Layer: 0
   m_Name: Bunny
   m_TagString: Untagged
@@ -441,6 +444,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a3b7541be8151aa49aa0c6cb4bb90da4, type: 3}
   - {fileID: 21300000, guid: 2f6a613cf23b1654d995912bceed1905, type: 3}
   - {fileID: 21300000, guid: dbfe33c7fe229bc43abb4d618332c646, type: 3}
+  baseSprite: {fileID: 0}
+  patternLayer1Sprite: {fileID: 0}
+  patternLayer2Sprite: {fileID: 0}
+  patternLayer3Sprite: {fileID: 0}
+  eyeSprite: {fileID: 0}
   agouti: {fileID: 21300000, guid: 8ac00ac7ccaa78848a85dc6ff57f4109, type: 3}
   tanOtter: {fileID: 21300000, guid: 9a92426f739f52e48afd5bbf608cb4ac, type: 3}
   himalayan: {fileID: 21300000, guid: 043d4a67f048a8e4ab2982541fd72f79, type: 3}
@@ -468,21 +476,70 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9076429709320733108}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: 54bb242ae18d0974f9d7866d28d65183, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &9076429709320733096
-BoxCollider2D:
+  m_Constraints: 4
+--- !u!114 &6356942256795104389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9076429709320733108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fba1e25fb795ea4ab08ea3ff33230d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  movementSpeed: 200
+  age: 0
+  reproductionWeight: 0
+  foodWeight: 0
+  hostileWeight: 0
+  waterWeight: 0
+  sleepWeight: 0
+  thisBunId: 0
+--- !u!114 &2549857835503774789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9076429709320733108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 1
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
+--- !u!58 &179606133
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -494,19 +551,20 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: -0.28}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.58
+--- !u!210 &179606139
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9076429709320733108}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &9076429709772808525
 GameObject:
   m_ObjectHideFlags: 0

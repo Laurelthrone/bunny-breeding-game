@@ -13,7 +13,7 @@ public class PhenotypeConverter : MonoBehaviour
 
     public Genome genome;
    
-    SpriteRenderer baseSprite, patternLayer1Sprite, patternLayer2Sprite, patternLayer3Sprite, eyeSprite;
+    public SpriteRenderer baseSprite, patternLayer1Sprite, patternLayer2Sprite, patternLayer3Sprite, eyeSprite;
     public Sprite agouti, tanOtter, himalayan, sableMarten;
     public string inspectorChinLerp, inspectorSableLerp, inspectorDiluteLerp;
 

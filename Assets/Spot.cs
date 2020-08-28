@@ -22,7 +22,7 @@ public class Spot : MonoBehaviour
         if (controller.phenotype[5] == 0) gameObject.transform.localScale = new Vector2(Random.Range(1f, 2f), Random.Range(1f, 2f));
         else gameObject.transform.localScale = new Vector2(Random.Range(.5f, 1.5f), Random.Range(.5f, 1.5f));
 
-        gameObject.transform.position = new Vector2(Random.Range(-.5f, .5f), Random.Range(-.5f, .5f));
+        gameObject.transform.position = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
         
         gameObject.transform.rotation = new Quaternion(0, 0, Random.Range(1f, 360f), 0);
         spotSprite.sprite = SpotArray.spots[Random.Range(0, 62)];
