@@ -7,7 +7,7 @@ using UnityEngine;
 public class Genome
 {
     //Number of genes in each half of the genome.
-    public const int numGenes = 8; //Will be at least 8 genes when properly implemented  
+    public const int numGenes = 8;
 
     //geneAlleles contains the number of possible alleles for each gene.
     /*
@@ -18,7 +18,8 @@ public class Genome
      * Gene 4: E(xtension)
      * Gene 5: En (Broken gene)
      * Gene 6: Dwarf gene
-     * Gene 7: V(ienna)
+     * Gene 7: V(ienna) 
+     * Gene 8 will *Eventually* be lop vs nonlop ears
      */
     public static readonly int[] geneAlleles = new int[numGenes] { 3, 2, 5, 2, 4, 2, 2, 2};
 
@@ -84,6 +85,22 @@ public class Genome
         }
 
         getPhenotype();
+    }
+
+    public Genome(bool initialSpawn)
+    {
+        if (!initialSpawn) return;
+        genes = new int[2, numGenes];
+        for (int i = 0; i <= 1; i++)
+        {
+            for (int j = 0; j < numGenes; j++)
+            {
+                genes[i, j] = UnityEngine.Random.Range(0, geneAlleles[j]); //Loop through each gene and pick a random allele from the possible alleles.
+                if (j == 5 && genes[i, j] == 0) genes[i, j] += UnityEngine.Random.Range(0, 2) == 0 ? 1 : 0;
+            }
+        }
+
+        getPhenotype(); 
     }
 
     //Determines the dominant allele of each gene and saves it to the phenotype.

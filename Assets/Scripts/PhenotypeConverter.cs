@@ -41,6 +41,7 @@ public class PhenotypeConverter : MonoBehaviour
         ColorUtility.TryParseHtmlString("#" + inspectorSableLerp, out sableLerp);
         ColorUtility.TryParseHtmlString("#" + inspectorDiluteLerp, out diluteLerp);
 
+
         baseSprite = GetComponent<SpriteRenderer>();
         patternLayer1Sprite = patternLayer1.GetComponent<SpriteRenderer>();
         patternLayer2Sprite = patternLayer2.GetComponent<SpriteRenderer>();
@@ -52,7 +53,7 @@ public class PhenotypeConverter : MonoBehaviour
         patternLayer1Sprite.enabled = true;
         patternLayer3Sprite.enabled = false;
 
-        genome = new Genome();
+        genome = new Genome(true);
         phenotype = genome.phenotype;
 
 
@@ -60,6 +61,8 @@ public class PhenotypeConverter : MonoBehaviour
 
         gameObject.transform.position = new Vector3(0, 0, 0);
         gameObject.transform.localScale = new Vector3(1, 1, 1);
+
+        if (phenotype[5] == 1 || phenotype[2] == 4 || phenotype[2] == 3) gameObject.transform.position = new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0);  
 
         foreach (Transform child in transform)
         {
@@ -86,17 +89,11 @@ public class PhenotypeConverter : MonoBehaviour
         eGene();
         enGene();
         vGene();
-        gameObject.transform.position = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Live update lerp for testing
-        ColorUtility.TryParseHtmlString("#" + inspectorChinLerp, out chinchillaLerp);
-        ColorUtility.TryParseHtmlString("#" + inspectorSableLerp, out sableLerp);
-        ColorUtility.TryParseHtmlString("#" + inspectorDiluteLerp, out diluteLerp);
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject newBun = Instantiate(prefab);
@@ -111,13 +108,13 @@ public class PhenotypeConverter : MonoBehaviour
         {
             //Sets size
             case 0:
-                gameObject.transform.localScale = new Vector3(.75f, .75f, 1);
+                gameObject.transform.localScale = new Vector3(.9f, .9f, 1);
                 break;
             case 1:
                 gameObject.transform.localScale = new Vector3(1, 1, 1);
                 break;
             case 2:
-                gameObject.transform.localScale = new Vector3(.7f, .7f, 1);
+                gameObject.transform.localScale = new Vector3(.85f, .85f, 1);
                 break;
         }
     }
@@ -349,5 +346,6 @@ public class PhenotypeConverter : MonoBehaviour
             yield return new WaitForEndOfFrame();
             Spot.numSpots++;
         }
+        gameObject.transform.position = new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0);
     }
 }

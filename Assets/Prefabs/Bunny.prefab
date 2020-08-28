@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2392709935536555425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0039, y: -0.0118, z: 0}
-  m_LocalScale: {x: 0.99605453, y: 0.98816043, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9076429709320733098}
   m_RootOrder: 4
@@ -317,7 +317,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 843
   m_Sprite: {fileID: 21300000, guid: 3107d670125d72844af0543602225e1f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2198291, g: 0.33480084, b: 0.4716981, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -448,6 +448,17 @@ MonoBehaviour:
   inspectorChinLerp: 99b
   inspectorSableLerp: B99
   inspectorDiluteLerp: 556
+  black: {r: 0, g: 0, b: 0, a: 0}
+  chocolate: {r: 0, g: 0, b: 0, a: 0}
+  agoutiPatternBlack: {r: 0, g: 0, b: 0, a: 0}
+  agoutiBaseBlack: {r: 0, g: 0, b: 0, a: 0}
+  agoutiBaseChocolate: {r: 0, g: 0, b: 0, a: 0}
+  agoutiPatternChocolate: {r: 0, g: 0, b: 0, a: 0}
+  blackTan: {r: 0, g: 0, b: 0, a: 0}
+  chocolateTan: {r: 0, g: 0, b: 0, a: 0}
+  spotColor: {r: 0, g: 0, b: 0, a: 0}
+  eyeRed: {r: 0, g: 0, b: 0, a: 0}
+  eyeBlue: {r: 0, g: 0, b: 0, a: 0}
   phenotype: 
 --- !u!50 &9076429709320733103
 Rigidbody2D:
