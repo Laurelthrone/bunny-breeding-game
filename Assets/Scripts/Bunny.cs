@@ -33,5 +33,7 @@ public class Bunny : Creature
         {
             followPath(path);
         }
+
+        updateMotivation();
     }
 }
