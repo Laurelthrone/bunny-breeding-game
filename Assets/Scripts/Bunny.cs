@@ -29,11 +29,14 @@ public class Bunny : Creature
     // Update is called once per frame
     void Update()
     {
+
+        updateMotivation();
+
+        Debug.Log(topMotivator + " " + motivators[topMotivator] + " " + drinking);
+
         if (path != null)
         {
             followPath(path);
         }
-
-        updateMotivation();
     }
 }

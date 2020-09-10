@@ -4,27 +4,51 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    Vector3 gridPos, pos;
     public float speed;
     public Rigidbody2D player;
+    float cdTime;   
+    public float cd, movementSpeed;
+    public Grid grid;
+    GridManager gridManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<Rigidbody2D>();   
+        gridManager = new GridManager(grid);
+        player = GetComponent<Rigidbody2D>();
+        gridPos = new Vector3Int(0, 0, 0);
+        cdTime = 0;
     }
-
+        
     // Update is called once per frame
     void Update()
     {
-        float xmov = Input.GetAxis("Horizontal") * speed * 100 * Time.deltaTime;
-        float ymov = Input.GetAxis("Vertical") * speed * 100 * Time.deltaTime;
-
-        //Prepare to check movement
-        Vector2 movement;
-
-        movement = new Vector2(xmov, ymov);
-
-        //Apply movement
-        player.AddForce(movement);
+        if (Input.anyKey) doInputs();
+        else gridManager.direction = gridManager.none;
+        gridPos = gridManager.getWorldPos();
+        gridPos.x += .5f;
+        gridPos.y += .5f;
+        pos = Vector3.Lerp(transform.position, gridPos, movementSpeed * Time.deltaTime);
+        transform.position = pos;
     }
+
+    void doInputs()
+    {
+        if (Time.time <= cdTime) return;
+
+        string vertDir = "";
+        string horizDir = "";
+
+        if (Input.GetAxisRaw("Vertical") > 0) vertDir = "up";
+        if (Input.GetAxisRaw("Vertical") < 0) vertDir = "down";
+        if (Input.GetAxisRaw("Horizontal") > 0) horizDir = "right";
+        if (Input.GetAxisRaw("Horizontal") < 0) horizDir = "left";
+
+        cdTime = Time.time + ((vertDir != "" && horizDir != "") ? cd*1.1f : cd);
+
+        gridManager.direction = new GridDirection(horizDir, vertDir);
+        gridManager.move();
+    }
+    
 }

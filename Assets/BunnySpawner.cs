@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class BunnySpawner : MonoBehaviour
 {
+    public int numBuns;
     public GameObject prefab;
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 4; i++) Instantiate(prefab);
+        for (int i = 0; i < numBuns; i++) Instantiate(prefab);
     }
 }

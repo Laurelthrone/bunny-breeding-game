@@ -12,11 +12,13 @@ public class Creature : MonoBehaviour
     protected Seeker seeker;
     protected Rigidbody2D rigidBody;
     protected CircleCollider2D parentCollider;
+    protected CheckContact contactChecker;
+    [SerializeField] protected string topMotivator;
 
     public Vector2 lastFood, lastWater, lastPrey, lastBun;
     public GameObject lastPredator;
 
-    protected bool eating, drinking, hunting, sleeping, fleeing;
+    public bool eating, drinking, hunting, sleeping, fleeing;
 
     protected float nextWaypointDistance = 3f;
 
@@ -38,8 +40,8 @@ public class Creature : MonoBehaviour
     //Determines the rate at which different motivators should change
     [SerializeField]
     protected float reproductionWeight, foodWeight,
-                     hostileWeight, waterWeight,
-                     sleepWeight;
+                    hostileWeight, waterWeight,
+                    sleepWeight;
 
     protected void initialize()
     {
@@ -59,12 +61,7 @@ public class Creature : MonoBehaviour
 
     public void findPath()
     {
-        if (seeker.IsDone() && isAlive) seeker.StartPath(rigidBody.position, findTarget(), OnPathComplete);
-    }
-
-    protected Vector2 findTarget()
-    {
-        return targetPos;
+        if (seeker.IsDone() && isAlive) seeker.StartPath(rigidBody.position, targetPos, OnPathComplete);
     }
 
     protected void followPath(Path p)
@@ -116,24 +113,37 @@ public class Creature : MonoBehaviour
         determineGoal();
     }
 
+    //Method for determining where to go
     protected void determineGoal()
     {
-        Debug.Log(drinking);
-        Debug.Log(eating);
+        //Get the key of the entry with the highest value. ngl idk how this works I ripped it from stackoverflow
+        topMotivator = motivators.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+        Debug.Log("Goal Determining....");
 
-        string topMotivator = motivators.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
         Vector2 defaultPos = new Vector2(0, 0);
-        Debug.Log(topMotivator + " " + motivators[topMotivator]);
-        if (motivators[topMotivator] < 40)
+
+        //Debug.Log(topMotivator + " " + motivators[topMotivator]);
+
+        //Wake up if something is more pressing than sleep
+        if (sleeping)
         {
+            if (topMotivator != "sleep")
+            {
+                sleeping = false;
+            }
+            else return;
+        }
+        
+
+        //Wander until a need meets a certain threshold
+        if (motivators[topMotivator] < 2000)
+        {
+            Debug.Log("Error in threshold check");
             wander();
             return;
         }
 
-        if (topMotivator != "sleep" && sleeping) sleeping = false;
-
-        Debug.Log(sleeping);
-
+        //Wander if no target has been detected, otherwise pathfind to target
         switch (topMotivator)
         {
             case "food":
@@ -163,12 +173,14 @@ public class Creature : MonoBehaviour
             case "hostile":
                 if (lastPrey == null)
                 {
+                    Debug.Log("Error_h");
                     wander();
                     return;
                 }
                 targetPos = lastPrey;
                 break;
             case "sleep":
+                Debug.Log("Sleep");
                 targetPos = gameObject.transform.position;
                 sleeping = true;
                 break;
@@ -188,39 +200,5 @@ public class Creature : MonoBehaviour
         return;
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log(collision.gameObject.tag);
-        switch (collision.gameObject.tag)
-        {
-            case "Bunny":
-                break;
-            case "Water":
-                drinking = true;
-                break;
-            case "Food":
-                eating = true;
-                break;
-            case "Predator":
-                break;
-        }
-    }
-
-    protected void OnTriggerExit2D(Collider2D collision)
-    {
-        Debug.Log(collision.gameObject.tag);
-        switch (collision.gameObject.tag)
-        {
-            case "Bunny":
-                break;
-            case "Water":
-                drinking = false;
-                break;
-            case "Food":
-                eating = false;
-                break;
-            case "Predator":
-                break;
-        }
-    }
+    
 }

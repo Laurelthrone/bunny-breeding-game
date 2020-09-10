@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &359780738
+--- !u!1 &360862158367559415
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 359780739}
-  - component: {fileID: 359780741}
-  - component: {fileID: 359780740}
+  - component: {fileID: 5161813531304380449}
+  - component: {fileID: 9220360018928460586}
+  - component: {fileID: 4113983871577582411}
+  - component: {fileID: 1753315981400203019}
   m_Layer: 0
-  m_Name: DetectionRadius
+  m_Name: CheckContact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &359780739
+--- !u!4 &5161813531304380449
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359780738}
+  m_GameObject: {fileID: 360862158367559415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,32 +33,53 @@ Transform:
   m_Father: {fileID: 9076429709320733098}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &359780741
+--- !u!58 &9220360018928460586
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359780738}
+  m_GameObject: {fileID: 360862158367559415}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 10.85
---- !u!114 &359780740
+  m_Radius: 1.07
+--- !u!50 &4113983871577582411
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360862158367559415}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1753315981400203019
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359780738}
+  m_GameObject: {fileID: 360862158367559415}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6939c6ae2d527e54ea29471ce238c312, type: 3}
+  m_Script: {fileID: 11500000, guid: 5efc940f3ed92e441a296f7a8ee91e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2392709935536555425
@@ -426,7 +448,7 @@ Transform:
   - {fileID: 8515316341887494454}
   - {fileID: 1887308982652727010}
   - {fileID: 426033109006855695}
-  - {fileID: 359780739}
+  - {fileID: 5161813531304380449}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -467,9 +489,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1741226559
-  m_SortingLayer: 23
-  m_SortingOrder: -68
+  m_SortingLayerID: 643035737
+  m_SortingLayer: 24
+  m_SortingOrder: -107
   m_Sprite: {fileID: 21300000, guid: 6a05529e97eafe041b27d72c1362e7cc, type: 3}
   m_Color: {r: 0.49019608, g: 0.44313726, b: 0.40784314, a: 1}
   m_FlipX: 0
@@ -517,7 +539,7 @@ MonoBehaviour:
   inspectorChinLerp: 99b
   inspectorSableLerp: B99
   inspectorDiluteLerp: 556
-  black: {r: 0, g: 0, b: 0, a: 0}
+  black: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 0}
   chocolate: {r: 0, g: 0, b: 0, a: 0}
   agoutiPatternBlack: {r: 0, g: 0, b: 0, a: 0}
   agoutiBaseBlack: {r: 0, g: 0, b: 0, a: 0}
@@ -562,17 +584,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fba1e25fb795ea4ab08ea3ff33230d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topMotivator: 
   lastFood: {x: 0, y: 0}
   lastWater: {x: 0, y: 0}
   lastPrey: {x: 0, y: 0}
   lastBun: {x: 0, y: 0}
   lastPredator: {fileID: 0}
+  eating: 0
+  drinking: 0
+  hunting: 0
+  sleeping: 0
+  fleeing: 0
   target: {fileID: 0}
   isAlive: 0
   isPregnant: 0
   canReproduce: 0
   isHostile: 0
-  movementSpeed: 100
+  movementSpeed: 200
   age: 1
   reproductionWeight: 1
   foodWeight: 1

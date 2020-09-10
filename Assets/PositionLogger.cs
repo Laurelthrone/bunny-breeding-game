@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This logs the positions of detected resources, allowing creatures to remember where sources of food, water, etc. are
+
 public class PositionLogger : MonoBehaviour
 {
 
@@ -16,7 +18,12 @@ public class PositionLogger : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (bunny == null) return;
+        if (bunny == null)
+        {
+            bunny = gameObject.GetComponentInParent<Bunny>();
+            return;
+        }
+            
         switch(collision.gameObject.tag)
         {
             case "Bunny":
