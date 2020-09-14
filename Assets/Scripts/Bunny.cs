@@ -15,6 +15,8 @@ public class Bunny : Creature
     // Start is called before the first frame update
     void Start()
     {
+        cd = .2f;
+        cdTime = 0;
         numBuns++;
         thisBunId = numBuns;
         genetics = GetComponent<PhenotypeConverter>();
@@ -29,13 +31,17 @@ public class Bunny : Creature
     // Update is called once per frame
     void Update()
     {
+        goToTargetTile();
 
         updateMotivation();
 
         Debug.Log(topMotivator + " " + motivators[topMotivator] + " " + drinking);
-
-        if (path != null)
+        Debug.Log(Time.time >= cdTime);
+        if (Time.time >= cdTime && path != null)
         {
+            Debug.Log("sdfhsdkfsdfsfd");
+            cd = Random.Range(.2f,2);
+            cdTime = Time.time + cd;
             followPath(path);
         }
     }

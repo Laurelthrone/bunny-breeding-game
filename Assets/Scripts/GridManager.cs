@@ -6,28 +6,31 @@ public class GridManager
 {
     Grid grid;
     public GridDirection direction, none;
-    Vector3Int gridPos;
+    public Vector3Int gridPos, worldPos;
+
+    public GridManager(Grid a, Vector3Int b)
+    {
+        none = new GridDirection("", "");
+        grid = a;
+        gridPos = getGridCoords(b);
+    }
 
     public GridManager(Grid a)
     {
         none = new GridDirection("", "");
         grid = a;
-        gridPos = new Vector3Int(0, 0, 0);
+        gridPos = new Vector3Int(0,0,0);
     }
 
-    void Start()
+    public Vector3Int getWorldPos()
     {
-        
+        Vector3 returnValue = grid.CellToWorld(gridPos);
+        return new Vector3Int((int)returnValue.x, (int)returnValue.y, (int)returnValue.z);
     }
 
-    void Update()
+    public Vector3Int getGridCoords(Vector3Int input)
     {
-        
-    }
-
-    public Vector3 getWorldPos()
-    {
-        return grid.CellToWorld(gridPos);
+        return grid.WorldToCell(input);
     }
 
     public void moveDiagonal(string dir)

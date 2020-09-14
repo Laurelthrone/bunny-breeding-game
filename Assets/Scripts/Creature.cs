@@ -20,7 +20,7 @@ public class Creature : MonoBehaviour
 
     public bool eating, drinking, hunting, sleeping, fleeing;
 
-    protected float nextWaypointDistance = 3f;
+    protected float cd, cdTime;
 
     [SerializeField] protected Transform target;
 
@@ -43,8 +43,15 @@ public class Creature : MonoBehaviour
                     hostileWeight, waterWeight,
                     sleepWeight;
 
+    protected Vector3 gridPos, pos;
+    public Grid grid;
+    protected GridManager gridManager;
+
     protected void initialize()
     {
+        if (grid == null) grid = GameObject.FindGameObjectWithTag("TerrainGrid").GetComponent<Grid>();
+        Vector3Int currentPosition = new Vector3Int((int)transform.position.x, (int)transform.position.y, (int)transform.position.z);
+        gridManager = new GridManager(grid, currentPosition);
         isAlive = true;
         motivators.Add("reproduction", 0);
         motivators.Add("food", 0);
@@ -56,7 +63,7 @@ public class Creature : MonoBehaviour
         parentCollider = GetComponent<CircleCollider2D>();
         seeker = GetComponent<Seeker>();
 
-        InvokeRepeating("findPath", 0f, 1f);
+        InvokeRepeating("findPath", 0f, 8f);
     }
 
     public void findPath()
@@ -66,31 +73,51 @@ public class Creature : MonoBehaviour
 
     protected void followPath(Path p)
     {
+        Vector3Int targetGridPos;
         if (fleeing)
         {
             flee();
             return;
         }
-        if (sleeping) return;
 
-        if (currentWaypoint >= p.vectorPath.Count)
+        do
         {
-            reachedEnd = true;
-            return;
-        }
-        else reachedEnd = false;
+            if (sleeping) return;
 
-        Vector2 direction = ((Vector2)p.vectorPath[currentWaypoint] - rigidBody.position).normalized;
-        Vector2 force = direction * movementSpeed * 2 * Time.deltaTime;
-        float distance = Vector2.Distance(rigidBody.position, path.vectorPath[currentWaypoint]);
+            //Check if route complete
+            if (currentWaypoint >= p.vectorPath.Count)
+            {
+                reachedEnd = true;
+                return;
+            }
+            else reachedEnd = false;
 
-        rigidBody.AddForce(force);
+            //
+            Vector2 targetPos = p.vectorPath[currentWaypoint];
+            targetGridPos = gridManager.getGridCoords(new Vector3Int((int)targetPos.x, (int)targetPos.y,0));
 
-        if (distance < nextWaypointDistance || (Time.time - lastTime) > 1f)
-        {
-            lastTime = Time.time;
-            currentWaypoint++;
-        }
+            string vertDir = "";
+            string horizDir = "";
+
+            if (targetGridPos.y > gridManager.gridPos.y) vertDir = "up";
+            else if (targetGridPos.y < gridManager.gridPos.y) vertDir = "down";
+
+            if (targetGridPos.x > gridManager.gridPos.x) horizDir = "right";
+            else if (targetGridPos.x < gridManager.gridPos.x) horizDir = "left";
+
+            gridManager.direction = new GridDirection(horizDir, vertDir);
+            gridManager.move();
+
+        } while (gridManager.gridPos != targetGridPos);
+        lastTime = Time.time;
+        currentWaypoint++;
+    }
+
+    protected void moveTowardsCell()
+    {
+        if (gridPos == null) return;
+        pos = Vector3.Lerp(transform.position, gridPos, movementSpeed * Time.deltaTime);
+        transform.position = pos;
     }
 
     protected void OnPathComplete(Path p)
@@ -200,5 +227,13 @@ public class Creature : MonoBehaviour
         return;
     }
 
+    protected void goToTargetTile()
+    {
+        gridPos = gridManager.getWorldPos();
+        gridPos.x += .5f;
+        gridPos.y += .5f;
+        pos = Vector3.Lerp(transform.position, gridPos, movementSpeed * Time.deltaTime);
+        transform.position = pos;
+    }
     
 }
