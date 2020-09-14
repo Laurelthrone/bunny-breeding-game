@@ -38,9 +38,8 @@ public class Bunny : Creature
         Debug.Log(topMotivator + " " + motivators[topMotivator] + " " + drinking);
         Debug.Log(Time.time >= cdTime);
         if (Time.time >= cdTime && path != null)
-        {
-            Debug.Log("sdfhsdkfsdfsfd");
-            cd = Random.Range(.2f,2);
+        {   
+            cd = Random.Range(.2f,.5f);
             cdTime = Time.time + cd;
             followPath(path);
         }

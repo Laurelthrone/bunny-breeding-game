@@ -17,7 +17,7 @@ public class Genome
      * Gene 3: D(ilute)
      * Gene 4: E(xtension)
      * Gene 5: En (Broken gene)
-     * Gene 6: Dwarf gene
+     * Gene 6: Dwarf gene (probably remove because scaling looks bad)
      * Gene 7: V(ienna) 
      * Gene 8 will *Eventually* be lop vs nonlop ears
      */
