@@ -9,13 +9,14 @@ public class Player : MonoBehaviour
     public Rigidbody2D player;
     float cdTime;   
     public float cd, movementSpeed;
-    public Grid grid;
-    GridManager gridManager;
+    public Grid grid, grid2;
+    GridManager gridManager, gridManager2;
 
     // Start is called before the first frame update
     void Start()
     {
         gridManager = new GridManager(grid);
+        gridManager2 = new GridManager(grid2);
         player = GetComponent<Rigidbody2D>();
         gridPos = new Vector3Int(0, 0, 0);
         cdTime = 0;
@@ -24,6 +25,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(gridManager.getGridCoords(new Vector3Int(Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y), 0)));
+        Debug.Log(gridManager2.getGridCoords(new Vector3Int(Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y), 0)));
         if (Input.anyKey) doInputs();
         else gridManager.direction = gridManager.none;
         gridPos = gridManager.getWorldPos();
