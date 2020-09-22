@@ -1658,15 +1658,19 @@ MonoBehaviour:
   tileGrid: {fileID: 1128826893}
   moveGrid: {fileID: 1943415678}
   ground: {fileID: 11400000, guid: 1dddc54082eecad43b9cfb858c5c0ed9, type: 2}
-  grass1: {fileID: 11400000, guid: e8916d8c7ea2dc4439a04add05de99c7, type: 2}
-  grass2: {fileID: 11400000, guid: 4c295296a3571794d9726f8553e8bd7f, type: 2}
-  grass3: {fileID: 11400000, guid: 291971d18fc9da3448a30eceecb37beb, type: 2}
-  grass4: {fileID: 11400000, guid: e09db9955e09acb4e87f6ccfb655d0da, type: 2}
-  grass5: {fileID: 11400000, guid: f33ae53fb96888241b8f4f891f5769c0, type: 2}
-  grass6: {fileID: 11400000, guid: 93103648fab7ed64887b254cd9e3570d, type: 2}
-  grass7: {fileID: 11400000, guid: 44df886eaf00fa54ba6424eb2e9d2d59, type: 2}
-  grass8: {fileID: 11400000, guid: 86bd7a1235a26bf4da12d941cf906fca, type: 2}
-  grass9: {fileID: 11400000, guid: 302ca6896bce6fe4487d9b46e0d8f94f, type: 2}
+  grassTLC: {fileID: 11400000, guid: e8916d8c7ea2dc4439a04add05de99c7, type: 2}
+  grassT: {fileID: 11400000, guid: 4c295296a3571794d9726f8553e8bd7f, type: 2}
+  grassTRC: {fileID: 11400000, guid: 291971d18fc9da3448a30eceecb37beb, type: 2}
+  grassL: {fileID: 11400000, guid: f33ae53fb96888241b8f4f891f5769c0, type: 2}
+  grassM: {fileID: 11400000, guid: 93103648fab7ed64887b254cd9e3570d, type: 2}
+  grassR: {fileID: 11400000, guid: 44df886eaf00fa54ba6424eb2e9d2d59, type: 2}
+  grassBLC: {fileID: 11400000, guid: 302ca6896bce6fe4487d9b46e0d8f94f, type: 2}
+  grassB: {fileID: 11400000, guid: 72cd38c5e2452ef43996e7ede36b3ff3, type: 2}
+  grassBRC: {fileID: 11400000, guid: 561f66d481f30d7488c4376c9705567c, type: 2}
+  grassIBL: {fileID: 11400000, guid: 8763f848ad0c58e4fb9f4e55338fbfab, type: 2}
+  grassIBR: {fileID: 11400000, guid: e09db9955e09acb4e87f6ccfb655d0da, type: 2}
+  grassITL: {fileID: 11400000, guid: 40d2c3cfe174beb4e93dccbef1ff85b4, type: 2}
+  grassITR: {fileID: 11400000, guid: 86bd7a1235a26bf4da12d941cf906fca, type: 2}
   groundMap: {fileID: 1053985352}
   grassMap: {fileID: 839259072}
   obstacleMap: {fileID: 940158970}
