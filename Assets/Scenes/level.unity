@@ -123,6 +123,124 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &63838771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 63838772}
+  - component: {fileID: 63838774}
+  - component: {fileID: 63838773}
+  m_Layer: 0
+  m_Name: Water
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &63838772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63838771}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1128826894}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!483693784 &63838773
+TilemapRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63838771}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_ChunkSize: {x: 32, y: 32, z: 32}
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_MaxChunkCount: 16
+  m_MaxFrameAge: 16
+  m_SortOrder: 0
+  m_Mode: 0
+  m_DetectChunkCullingBounds: 0
+  m_MaskInteraction: 0
+--- !u!1839735485 &63838774
+Tilemap:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63838771}
+  m_Enabled: 1
+  m_Tiles: {}
+  m_AnimatedTiles: {}
+  m_TileAssetArray: []
+  m_TileSpriteArray: []
+  m_TileMatrixArray: []
+  m_TileColorArray: []
+  m_TileObjectToInstantiateArray: []
+  m_AnimationFrameRate: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Origin: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0, y: 0, z: 1}
+  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileOrientation: 0
+  m_TileOrientationMatrix:
+    e00: 1
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 1
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
 --- !u!1 &221374731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,6 +1758,7 @@ Transform:
   - {fileID: 1053985350}
   - {fileID: 940158965}
   - {fileID: 839259070}
+  - {fileID: 63838772}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1679,9 +1798,32 @@ MonoBehaviour:
   grass1R: {fileID: 11400000, guid: 35a4ed6369103be4485d41b566a2516d, type: 2}
   grass1U: {fileID: 11400000, guid: c1f197757dcdb78438faf11e47bfaffd, type: 2}
   grass1D: {fileID: 11400000, guid: 2ad5d219522752a4680d681eee1560b3, type: 2}
+  waterTLC: {fileID: 11400000, guid: bdd13c7f3f8fa3f44989eea8eaef2d66, type: 2}
+  waterT: {fileID: 11400000, guid: 1899df9c527c852499cca23bd4ef9a73, type: 2}
+  waterTRC: {fileID: 11400000, guid: 78e9c512f0003a84ebd7b828c876f1b5, type: 2}
+  waterL: {fileID: 11400000, guid: d208b706561a9324cac9537294a41a9d, type: 2}
+  waterM: {fileID: 11400000, guid: b78e23f9f7f29bf499cf2dde61fcc05b, type: 2}
+  waterR: {fileID: 11400000, guid: 0e2361c561e1e2d4e8bd22722a8a5425, type: 2}
+  waterBLC: {fileID: 11400000, guid: 92c6ac0374184f24d8f4e7e7184b2680, type: 2}
+  waterB: {fileID: 11400000, guid: 6101b4c25b3ed31488edc151d103ceda, type: 2}
+  waterBRC: {fileID: 11400000, guid: fdd502f779bb3cc4f80bdd052b7fd82a, type: 2}
+  waterIBL: {fileID: 11400000, guid: 1cab1cbf2be94004a942177bfa26254e, type: 2}
+  waterIBR: {fileID: 11400000, guid: cac532ce2ea157e418a0d48101a8b871, type: 2}
+  waterITL: {fileID: 11400000, guid: 54e32d462868ca84298c9e54f68fb176, type: 2}
+  waterITR: {fileID: 11400000, guid: 1603ab2d8f6ea00438ed3170429afced, type: 2}
+  water2CL: {fileID: 11400000, guid: 0431336e01936044ba605051d95ef77a, type: 2}
+  water2CR: {fileID: 11400000, guid: a8f77121d5342ee4998dad98cad330e9, type: 2}
+  water2CU: {fileID: 11400000, guid: 0c8fafaa2f43e194aa18c95fb262c21f, type: 2}
+  water2CD: {fileID: 11400000, guid: 3ddc028fd9b521f449e04d5586273e5f, type: 2}
+  water1L: {fileID: 11400000, guid: 27e54e69fae8df643ba4586b4927050d, type: 2}
+  water1R: {fileID: 11400000, guid: 7bff95821eb44334fae5d18b5764ed56, type: 2}
+  water1U: {fileID: 11400000, guid: 7261642f00570d74e97bf534b9d17148, type: 2}
+  water1D: {fileID: 11400000, guid: 247e3f50edb68244783be0ea7b9b458e, type: 2}
   groundMap: {fileID: 1053985352}
   grassMap: {fileID: 839259072}
   obstacleMap: {fileID: 940158970}
+  waterMap: {fileID: 63838774}
+  activeMap: {fileID: 0}
 --- !u!1 &1434708956
 GameObject:
   m_ObjectHideFlags: 0
