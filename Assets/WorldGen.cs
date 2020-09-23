@@ -12,12 +12,18 @@ public class WorldGen : MonoBehaviour
                 grassTLC, grassT, grassTRC,
                 grassL, grassM, grassR,
                 grassBLC, grassB, grassBRC,
-                grassIBL, grassIBR, grassITL, grassITR;
+
+                grassIBL, grassIBR, grassITL, grassITR,
+
+                grass2CL, grass2CR, grass2CU, grass2CD,
+                grass1L, grass1R, grass1U, grass1D;
 
     public Tilemap groundMap, grassMap, obstacleMap;
     const int SIZE = 20, MAX_STEPS = 6;
-    Vector3Int currentPos;
-    List<Vector3Int> grassSeeds;
+    Vector3Int currentPos;  
+    public static List<Vector3Int> grassSeeds;
+    public static List<Vector3Int> grassBranches;
+    public static bool firstRun = true;
 
     // Start is called before the first frame update
     void Start()
@@ -139,7 +145,7 @@ public class WorldGen : MonoBehaviour
             {
                 for (int y = MAX_STEPS * -2; y < MAX_STEPS * 2; y++)
                 {
-                    findInnerCorners(new Vector3Int(x + seedPos.x, y + seedPos.y, 0));
+                    innersAnd1x1s(new Vector3Int(x + seedPos.x, y + seedPos.y, 0));
                 }
             }
         }
@@ -176,6 +182,7 @@ public class WorldGen : MonoBehaviour
     {
         int yOffset;
         if (diag == "up") yOffset = 1;
+        else if (diag == "down") yOffset = -1;
         else yOffset = 0;
 
         switch (dir)
@@ -254,7 +261,57 @@ public class WorldGen : MonoBehaviour
         else return false;
     }
 
-    void findInnerCorners(Vector3Int a)
+    //Returns the number of tiles in cardinal directions
+    int numCardinals(Vector3Int a)
     {
+        int counter = 0;
+        if (checkTile(a, "up")) counter++;
+        if (checkTile(a, "down")) counter++;
+        if (checkTile(a, "left")) counter++;
+        if (checkTile(a, "right")) counter++;
+        return counter;
+    }
+
+    int numDiagonals(Vector3Int a)
+    {
+        int counter = 0;
+        if (checkTile(a, "left", "up")) counter++;
+        if (checkTile(a, "left", "down")) counter++;
+        if (checkTile(a, "right", "up")) counter++;
+        if (checkTile(a, "right", "down")) counter++;
+        return counter;
+    }
+
+    void innersAnd1x1s(Vector3Int a)
+    {
+        //If tile exists, is not completely surrounded, and has all four cardinal directions filled, it is an inner corner piece
+        if(grassMap.HasTile(a) && numAdjacents(a) != 8 && numCardinals(a) == 4)
+        {
+            if (numDiagonals(a) == 2) twoCorners(a);
+            else if (numDiagonals(a) == 3) oneCorner(a);
+        }
+        else if(grassMap.HasTile(a) && numCardinals(a) == 1)
+        {
+            if (!checkTile(a, "left")) grassMap.SetTile(a, grass1L);
+            else if (!checkTile(a, "right")) grassMap.SetTile(a, grass1R);
+            else if (!checkTile(a, "up")) grassMap.SetTile(a, grass1U);
+            else if (!checkTile(a, "down")) grassMap.SetTile(a, grass1D);
+        }
+    }
+
+    void twoCorners(Vector3Int a)
+    {
+        if (!checkTile(a, "left", "down") && !checkTile(a, "left", "up")) grassMap.SetTile(a, grass2CL);
+        else if (!checkTile(a, "left", "down") && !checkTile(a, "right", "down")) grassMap.SetTile(a, grass2CD);
+        else if (!checkTile(a, "left", "up") && !checkTile(a, "right", "up")) grassMap.SetTile(a, grass2CU);
+        else if (!checkTile(a, "right", "down") && !checkTile(a, "right", "up")) grassMap.SetTile(a, grass2CR);
+    }
+
+    void oneCorner(Vector3Int a)
+    {
+        if (!checkTile(a, "left", "down")) grassMap.SetTile(a, grassIBL);
+        else if (!checkTile(a, "left", "up")) grassMap.SetTile(a, grassITL);
+        else if (!checkTile(a, "right", "up")) grassMap.SetTile(a, grassITR);
+        else if (!checkTile(a, "right", "down")) grassMap.SetTile(a, grassIBR);
     }
 }

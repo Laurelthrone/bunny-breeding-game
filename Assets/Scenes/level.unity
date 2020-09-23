@@ -1671,6 +1671,14 @@ MonoBehaviour:
   grassIBR: {fileID: 11400000, guid: e09db9955e09acb4e87f6ccfb655d0da, type: 2}
   grassITL: {fileID: 11400000, guid: 40d2c3cfe174beb4e93dccbef1ff85b4, type: 2}
   grassITR: {fileID: 11400000, guid: 86bd7a1235a26bf4da12d941cf906fca, type: 2}
+  grass2CL: {fileID: 11400000, guid: ddd164a8514589643b5061028a510b9b, type: 2}
+  grass2CR: {fileID: 11400000, guid: 8af6af5f49d3b044ba040032c7d63c40, type: 2}
+  grass2CU: {fileID: 11400000, guid: abf4042823062fe4fb89c9d2667c3c70, type: 2}
+  grass2CD: {fileID: 11400000, guid: 44f43c809951ffe44a7b66383211dd3a, type: 2}
+  grass1L: {fileID: 11400000, guid: c2ce1d99775a7e745bf507f4819a55c7, type: 2}
+  grass1R: {fileID: 11400000, guid: 35a4ed6369103be4485d41b566a2516d, type: 2}
+  grass1U: {fileID: 11400000, guid: c1f197757dcdb78438faf11e47bfaffd, type: 2}
+  grass1D: {fileID: 11400000, guid: 2ad5d219522752a4680d681eee1560b3, type: 2}
   groundMap: {fileID: 1053985352}
   grassMap: {fileID: 839259072}
   obstacleMap: {fileID: 940158970}
