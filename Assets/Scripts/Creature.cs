@@ -145,7 +145,7 @@ public class Creature : MonoBehaviour
     {
         //Get the key of the entry with the highest value. ngl idk how this works I ripped it from stackoverflow
         topMotivator = motivators.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
-        Debug.Log("Goal Determining....");
+        // Debug.Log("Goal Determining....");
 
         Vector2 defaultPos = new Vector2(0, 0);
 
@@ -165,7 +165,7 @@ public class Creature : MonoBehaviour
         //Wander until a need meets a certain threshold
         if (motivators[topMotivator] < 2000)
         {
-            Debug.Log("Error in threshold check");
+           // Debug.Log("Error in threshold check");
             wander();
             return;
         }
@@ -200,14 +200,14 @@ public class Creature : MonoBehaviour
             case "hostile":
                 if (lastPrey == null)
                 {
-                    Debug.Log("Error_h");
+                   // Debug.Log("Error_h");
                     wander();
                     return;
                 }
                 targetPos = lastPrey;
                 break;
             case "sleep":
-                Debug.Log("Sleep");
+               // Debug.Log("Sleep");
                 targetPos = gameObject.transform.position;
                 sleeping = true;
                 break;

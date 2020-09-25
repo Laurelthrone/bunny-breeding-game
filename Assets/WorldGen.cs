@@ -27,15 +27,19 @@ public class WorldGen : MonoBehaviour
 
                 water2CL, water2CR, water2CU, water2CD,
                 water1L, water1R, water1U, water1D;
-                ////////////////////////////////////////
+    ////////////////////////////////////////
 
     public Tilemap groundMap, grassMap, obstacleMap, waterMap, activeMap;
-    const int SIZE = 20, MAX_STEPS = 6;
-    Vector3Int currentPos;  
+    public int SIZE = 30, MAX_STEPS = 10;
+    public float ODDS = .02f;
+    Vector3Int currentPos;
     public static List<Vector3Int> grassSeeds, waterSeeds, activeSeeds, allOccupied;
     public static List<Tile> grassTiles, waterTiles, activeTiles;
 
-    public static bool firstRun = true;
+    bool initialized = false;
+    int currentStep = 0;
+
+    MapSet grass, water;
 
     // Start is called before the first frame update
     void Start()
@@ -70,27 +74,30 @@ public class WorldGen : MonoBehaviour
         grassTiles.Add(grass1U);
         grassTiles.Add(grass1D);
 
-        waterTiles.Add(waterTLC);
-        waterTiles.Add(waterT);
-        waterTiles.Add(waterTRC);
-        waterTiles.Add(waterL);
-        waterTiles.Add(waterM);
-        waterTiles.Add(waterR);
-        waterTiles.Add(waterBLC);
-        waterTiles.Add(waterB);
-        waterTiles.Add(waterBRC);
-        waterTiles.Add(waterIBL);
-        waterTiles.Add(waterIBR);
-        waterTiles.Add(waterITL);
-        waterTiles.Add(waterITR);
-        waterTiles.Add(water2CL);
-        waterTiles.Add(water2CR);
-        waterTiles.Add(water2CU);
-        waterTiles.Add(water2CD);
-        waterTiles.Add(water1L);
-        waterTiles.Add(water1R);
-        waterTiles.Add(water1U);
-        waterTiles.Add(water1D);
+        waterTiles.Add(waterTLC); //  0
+        waterTiles.Add(waterT);   //  1
+        waterTiles.Add(waterTRC); //  2
+        waterTiles.Add(waterL);   //  3
+        waterTiles.Add(waterM);   //  4
+        waterTiles.Add(waterR);   //  5
+        waterTiles.Add(waterBLC); //  6
+        waterTiles.Add(waterB);   //  7
+        waterTiles.Add(waterBRC); //  8
+        waterTiles.Add(waterIBL); //  9
+        waterTiles.Add(waterIBR); //  10
+        waterTiles.Add(waterITL); //  11
+        waterTiles.Add(waterITR); //  12
+        waterTiles.Add(water2CL); //  13
+        waterTiles.Add(water2CR); //  14
+        waterTiles.Add(water2CU); //  15
+        waterTiles.Add(water2CD); //  16
+        waterTiles.Add(water1L);  //  17
+        waterTiles.Add(water1R);  //  18
+        waterTiles.Add(water1U);  //  19
+        waterTiles.Add(water1D);  //  20
+
+        grass = new MapSet(grassMap, grassTiles, grassSeeds);
+        water = new MapSet(waterMap, waterTiles, waterSeeds);
 
         //Generate base tiles
         for (int i = -SIZE; i < SIZE; i++)
@@ -101,30 +108,47 @@ public class WorldGen : MonoBehaviour
             }
         }
 
-        doPatchGen(grassMap, grassTiles, grassSeeds);
-        doPatchGen(waterMap, waterTiles, waterSeeds);
-
+        StartCoroutine("checker");
     }
 
-    void doPatchGen(Tilemap a, List<Tile> b, List<Vector3Int> c)
+    IEnumerator checker()
     {
-        activeMap = a;
+        bool done = false;
+        while (!done)
+        {
+            if (currentStep == 0) StartCoroutine("doPatchGen", grass);
+            else if (currentStep == 2) StartCoroutine("doPatchGen", water);
+            else if (currentStep == 4) done = true;
+            yield return new WaitForEndOfFrame();
+        }
+        Debug.Log("Done!");
+    }
+
+    IEnumerator doPatchGen(MapSet set)
+    {
+        int counter = 0;
+        currentStep++;
+
+        activeMap = set.map;
         Debug.Log("Map: " + activeMap.name);
-        activeTiles = b;
-        activeSeeds = c;
+        activeTiles = set.tiles;
+        activeSeeds = set.seeds;
 
         //Generate grass seeds
         for (int i = -SIZE; i < SIZE; i++)
         {
-            for (int j = -SIZE; j < SIZE; j++)
+            for (int j = -SIZE; j < SIZE; j += Random.Range(1, 5))
             {
-                if ((spacing(new Vector2Int(i, j), 20) && Chance.Percent(1) && !activeMap.HasTile(new Vector3Int(i, j, 0))))
+                if (Chance.Percent(ODDS) && spacing(new Vector3Int(i, j, 0), 20) && !activeMap.HasTile(new Vector3Int(i, j, 0)))
                 {
                     activeMap.SetTile(new Vector3Int(i, j, 0), activeTiles[4]);
                     activeSeeds.Add(new Vector3Int(i, j, 0));
                     allOccupied.Add(new Vector3Int(i, j, 0));
                 }
             }
+            counter++;
+            Debug.Log("Seeding! " + counter);
+            yield return new WaitForEndOfFrame();
         }
 
         //Create grass branches
@@ -136,7 +160,7 @@ public class WorldGen : MonoBehaviour
             bool lastWasDiag = false;
             Vector3Int movMod;
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i <= 3; i++)
             {
                 switch (i)
                 {
@@ -165,13 +189,16 @@ public class WorldGen : MonoBehaviour
                     activeMap.SetTile(currentPos, activeTiles[4]);
                     allOccupied.Add(currentPos);
                     currentPos += movMod;
-                    if (!lastWasDiag && Chance.Percent(45))
+                    if (!lastWasDiag && Chance.Percent(90))
                     {
                         if (xDir != 0) currentPos.y += Random.Range(-1, 1);
                         else currentPos.x += Random.Range(-1, 1);
                         lastWasDiag = true;
                     }
                     else lastWasDiag = false;
+                    yield return new WaitForEndOfFrame();
+                    counter++;
+                    Debug.Log("Branching! " + counter);
                 }
 
             }
@@ -181,27 +208,30 @@ public class WorldGen : MonoBehaviour
         //Fill in patches
         foreach (Vector3Int seedPos in activeSeeds)
         {
-            for (int i = 0; i < 1; i++)
-            {
-                for (int x = MAX_STEPS * -2; x < MAX_STEPS * 2; x++)
-                {
-                    for (int y = MAX_STEPS * -2; y < MAX_STEPS * 2; y++)
-                    {
-                        Debug.Log("x " + (seedPos.x + x) + "y " + (seedPos.y + y));
-                        currentPos = new Vector3Int(seedPos.x + x, seedPos.y - y, 0);
+            bool invertVert = Random.value <= .5;
+            bool invertHoriz = Random.value <= .5;
 
-                        //Fill empty tiles that have at least 3 adjacent tiles
-                        if (numAdjacents(currentPos) >= 3)
-                        {
-                            activeMap.SetTile(currentPos, activeTiles[4]);
-                            allOccupied.Add(currentPos);
-                        }
+            for (int x = MAX_STEPS * -2; x < MAX_STEPS * 2; x++)
+            {
+                for (int y = MAX_STEPS * -2; y < MAX_STEPS * 2; y++)
+                {
+                    //Debug.Log("x " + (seedPos.x + x) + "y " + (seedPos.y + y));
+                    currentPos = new Vector3Int(seedPos.x + (x * (invertHoriz ? -1 : 1)), seedPos.y - (y * (invertVert ? -1 : 1)), 0);
+
+                    //Fill empty tiles that have at least 3 adjacent tiles
+                    if (atLeast3Adjacents(currentPos))
+                    {
+                        activeMap.SetTile(currentPos, activeTiles[4]);
+                        allOccupied.Add(currentPos);
                     }
                 }
             }
+            yield return new WaitForEndOfFrame();
+            counter++;
+            Debug.Log("Patching! " + counter);
         }
 
-        //Cleanup first pass (outline)
+        //Cleanup outline
         foreach (Vector3Int seedPos in activeSeeds)
         {
             for (int x = MAX_STEPS * -2; x < MAX_STEPS * 2; x++)
@@ -209,21 +239,15 @@ public class WorldGen : MonoBehaviour
                 for (int y = MAX_STEPS * -2; y < MAX_STEPS * 2; y++)
                 {
                     determineOutline(new Vector3Int(x + seedPos.x, y + seedPos.y, 0));
-                }
-            }
-        }
-
-        //Cleanup second pass (inner corners and 1x1s)
-        foreach (Vector3Int seedPos in activeSeeds)
-        {
-            for (int x = MAX_STEPS * -2; x < MAX_STEPS * 2; x++)
-            {
-                for (int y = MAX_STEPS * -2; y < MAX_STEPS * 2; y++)
-                {
                     innersAnd1x1s(new Vector3Int(x + seedPos.x, y + seedPos.y, 0));
                 }
             }
+            yield return new WaitForEndOfFrame();
+            counter++;
+            Debug.Log("Cleaning! " + counter);
         }
+
+        currentStep++;
     }
 
     int numAdjacents(Vector3Int pos)
@@ -234,22 +258,34 @@ public class WorldGen : MonoBehaviour
             for (int j = -1; j <= 1; j++)
             {
                 Vector3Int tspot = new Vector3Int(pos.x + i, pos.y + j, 0);
-                Debug.Log("i " + (pos.x + i) + "j " + (pos.y + j) + "pos " + tspot + "cond " + activeMap.HasTile(tspot));
+               // Debug.Log("i " + (pos.x + i) + "j " + (pos.y + j) + "pos " + tspot + "cond " + activeMap.HasTile(tspot));
                 if (activeMap.HasTile(tspot) && tspot != pos) counter++;
             }
         }
         return counter;
     }
 
-    bool spacing(Vector2Int pos, int width)
+    bool atLeast3Adjacents(Vector3Int pos)
     {
-        for (int i = 0; i < width; i++)
+        int counter = 0;
+        for (int i = -1; i <= 1; i++)
         {
-            for (int j = 0; j < width; j++)
+            for (int j = -1; j <= 1; j++)
             {
-                Vector3Int t = new Vector3Int(pos.x - (width - 2) + i, pos.y - (width - 2) + j, 0);
-                if (activeMap.HasTile(t) || allOccupied.Contains(t)) return false;
+                Vector3Int tspot = new Vector3Int(pos.x + i, pos.y + j, 0);
+                //Debug.Log("i " + (pos.x + i) + "j " + (pos.y + j) + "pos " + tspot + "cond " + activeMap.HasTile(tspot));
+                if (activeMap.HasTile(tspot) && tspot != pos) counter++;
+                if (counter >= 3) return true;
             }
+        }
+        return false;
+    }
+
+    bool spacing(Vector3Int pos, int distance)
+    {
+        foreach (Vector3Int position in allOccupied)
+        {
+            if (Vector3Int.Distance(pos, position) < distance) return false;
         }
         return true;
     }
@@ -291,23 +327,23 @@ public class WorldGen : MonoBehaviour
         return false;
     }
 
-    void determineOutline(Vector3Int a)
+    bool determineOutline(Vector3Int a)
     {
         int adjacents = numAdjacents(a);
-        if (!activeMap.HasTile(a) || adjacents == 8) return;
+        if (!activeMap.HasTile(a) || adjacents == 8) return false;
 
         //Checks sides
         if (twoVerts(a) && !twoHoriz(a))
         {
             activeMap.SetTile(a, checkTile(a, "left") ? activeTiles[5] : activeTiles[3]);
             allOccupied.Add(a);
-            return;
+            return true;
         }
         if (twoHoriz(a) && !twoVerts(a))
         {
             activeMap.SetTile(a, checkTile(a, "up") ? activeTiles[7] : activeTiles[1]);
             allOccupied.Add(a);
-            return;
+            return true;
         }
 
         //Checks corners
@@ -318,16 +354,18 @@ public class WorldGen : MonoBehaviour
                 if (checkTile(a, "left")) activeMap.SetTile(a, activeTiles[2]);
                 else activeMap.SetTile(a, activeTiles[0]);
                 allOccupied.Add(a);
-                return;
+                return true;
             }
             else
             {
                 if (checkTile(a, "left")) activeMap.SetTile(a, activeTiles[8]);
                 else activeMap.SetTile(a, activeTiles[6]);
                 allOccupied.Add(a);
-                return;
+                return true;
             }
         }
+
+        return false;
     }
 
     bool twoVerts(Vector3Int a)
@@ -372,10 +410,10 @@ public class WorldGen : MonoBehaviour
         }
         else if (activeMap.HasTile(a) && numCardinals(a) == 1)
         {
-            if (!checkTile(a, "left")) activeMap.SetTile(a, activeTiles[17]);
-            else if (!checkTile(a, "right")) activeMap.SetTile(a, activeTiles[18]);
-            else if (!checkTile(a, "up")) activeMap.SetTile(a, activeTiles[19]);
-            else if (!checkTile(a, "down")) activeMap.SetTile(a, activeTiles[20]);
+            if (checkTile(a, "right")) activeMap.SetTile(a, activeTiles[17]);
+            else if (checkTile(a, "left")) activeMap.SetTile(a, activeTiles[18]);
+            else if (checkTile(a, "down")) activeMap.SetTile(a, activeTiles[19]);
+            else if (checkTile(a, "up")) activeMap.SetTile(a, activeTiles[20]);
             allOccupied.Add(a);
         }
     }
@@ -398,3 +436,4 @@ public class WorldGen : MonoBehaviour
         allOccupied.Add(a);
     }
 }
+

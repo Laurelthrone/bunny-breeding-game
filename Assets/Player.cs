@@ -25,8 +25,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(gridManager.getGridCoords(new Vector3Int(Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y), 0)));
-        Debug.Log(gridManager2.getGridCoords(new Vector3Int(Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y), 0)));
         if (Input.anyKey) doInputs();
         else gridManager.direction = gridManager.none;
         gridPos = gridManager.getWorldPos();

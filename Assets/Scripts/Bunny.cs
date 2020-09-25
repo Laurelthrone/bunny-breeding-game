@@ -35,8 +35,8 @@ public class Bunny : Creature
 
         updateMotivation();
 
-        Debug.Log(topMotivator + " " + motivators[topMotivator] + " " + drinking);
-        Debug.Log(Time.time >= cdTime);
+        //Debug.Log(topMotivator + " " + motivators[topMotivator] + " " + drinking);
+       // Debug.Log(Time.time >= cdTime);
         if (Time.time >= cdTime && path != null)
         {   
             cd = Random.Range(.2f,.5f);
