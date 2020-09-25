@@ -208,21 +208,24 @@ public class WorldGen : MonoBehaviour
         //Fill in patches
         foreach (Vector3Int seedPos in activeSeeds)
         {
-            bool invertVert = Random.value <= .5;
-            bool invertHoriz = Random.value <= .5;
+            bool invertVert = Chance.Percent(50);
+            bool invertHoriz = Chance.Percent(50);
 
-            for (int x = MAX_STEPS * -2; x < MAX_STEPS * 2; x++)
+            for (int i = 0; i < 1; i++)
             {
-                for (int y = MAX_STEPS * -2; y < MAX_STEPS * 2; y++)
+                for (int x = MAX_STEPS * -2; x < MAX_STEPS * 2; x++)
                 {
-                    //Debug.Log("x " + (seedPos.x + x) + "y " + (seedPos.y + y));
-                    currentPos = new Vector3Int(seedPos.x + (x * (invertHoriz ? -1 : 1)), seedPos.y - (y * (invertVert ? -1 : 1)), 0);
-
-                    //Fill empty tiles that have at least 3 adjacent tiles
-                    if (atLeast3Adjacents(currentPos))
+                    for (int y = MAX_STEPS * -2; y < MAX_STEPS * 2; y++)
                     {
-                        activeMap.SetTile(currentPos, activeTiles[4]);
-                        allOccupied.Add(currentPos);
+                        //Debug.Log("x " + (seedPos.x + x) + "y " + (seedPos.y + y));
+                        currentPos = new Vector3Int(seedPos.x + (x * (invertHoriz ? -1 : 1)), seedPos.y - (y * (invertVert ? -1 : 1)), 0);
+
+                        //Fill empty tiles that have at least 3 adjacent tiles
+                        if (atLeast3Adjacents(currentPos) && Chance.Percent(90))
+                        {
+                            activeMap.SetTile(currentPos, activeTiles[4]);
+                            allOccupied.Add(currentPos);
+                        }
                     }
                 }
             }
