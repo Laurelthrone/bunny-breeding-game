@@ -9,16 +9,15 @@ public class Player : MonoBehaviour
     public Rigidbody2D player;
     float cdTime;   
     public float cd, movementSpeed;
-    public Grid grid, grid2;
+    public Grid grid, tileGrid;
     GridManager gridManager, gridManager2;
 
     // Start is called before the first frame update
     void Start()
     {
-        gridManager = new GridManager(grid);
-        gridManager2 = new GridManager(grid2);
         player = GetComponent<Rigidbody2D>();
         gridPos = new Vector3Int(0, 0, 0);
+        gridManager = new GridManager(grid, tileGrid, new Vector3Int(0,0,0));
         cdTime = 0;
     }
         
@@ -32,6 +31,7 @@ public class Player : MonoBehaviour
         gridPos.y += .5f;
         pos = Vector3.Lerp(transform.position, gridPos, movementSpeed * Time.deltaTime);
         transform.position = pos;
+       // Debug.Log(gridManager.getTileCoords(new Vector3Int((int)transform.position.x,(int)transform.position.y,0)));
     }
 
     void doInputs()

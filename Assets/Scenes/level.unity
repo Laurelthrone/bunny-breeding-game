@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 63838772}
   - component: {fileID: 63838774}
   - component: {fileID: 63838773}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,15 +213,257 @@ Tilemap:
   m_Enabled: 1
   m_Tiles: {}
   m_AnimatedTiles: {}
-  m_TileAssetArray: []
-  m_TileSpriteArray: []
-  m_TileMatrixArray: []
-  m_TileColorArray: []
+  m_TileAssetArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileMatrixArray:
+  - m_RefCount: 0
+    m_Data:
+      e00: NaN
+      e01: 2.084601e-17
+      e02: 2.535766e-29
+      e03: 5.018177
+      e10: NaN
+      e11: 4.5905e-41
+      e12: 7.76e-43
+      e13: 7.74e-43
+      e20: 2.5358166e-29
+      e21: 2.5358166e-29
+      e22: -8.9795554e-35
+      e23: -8.9795554e-35
+      e30: 7.76e-43
+      e31: 7.76e-43
+      e32: 2.5e-43
+      e33: 2.5e-43
+  - m_RefCount: 0
+    m_Data:
+      e00: 4e-45
+      e01: -269696
+      e02: 0
+      e03: 5.9886553e-19
+      e10: 4.5905e-41
+      e11: 7.75e-43
+      e12: 7.74e-43
+      e13: 4.5905e-41
+      e20: NaN
+      e21: 0
+      e22: 0
+      e23: 5.4657784
+      e30: NaN
+      e31: 0
+      e32: 0
+      e33: 7.74e-43
+  - m_RefCount: 0
+    m_Data:
+      e00: 4e-45
+      e01: -269696
+      e02: 0
+      e03: 5.9886553e-19
+      e10: 4.5905e-41
+      e11: 7.75e-43
+      e12: 7.74e-43
+      e13: 4.5905e-41
+      e20: NaN
+      e21: 0
+      e22: 0
+      e23: 5.5805397
+      e30: NaN
+      e31: 0
+      e32: 0
+      e33: 7.74e-43
+  - m_RefCount: 0
+    m_Data:
+      e00: 4e-45
+      e01: -269696
+      e02: 0
+      e03: 5.9886553e-19
+      e10: 4.5905e-41
+      e11: 7.75e-43
+      e12: 7.74e-43
+      e13: 4.5905e-41
+      e20: NaN
+      e21: 0
+      e22: 0
+      e23: 5.381672
+      e30: NaN
+      e31: 0
+      e32: 0
+      e33: 7.74e-43
+  - m_RefCount: 0
+    m_Data:
+      e00: NaN
+      e01: -0.000000001968445
+      e02: 2.539021e-29
+      e03: 8.158699
+      e10: NaN
+      e11: 4.5904e-41
+      e12: 7.45e-43
+      e13: 7.43e-43
+      e20: 2.5390714e-29
+      e21: 2.5390714e-29
+      e22: -0.012922794
+      e23: -0.012922794
+      e30: 7.45e-43
+      e31: 7.45e-43
+      e32: 2.4e-43
+      e33: 2.4e-43
+  m_TileColorArray:
+  - m_RefCount: 0
+    m_Data: {r: 2.539021e-29, g: 2.539021e-29, b: 2.539021e-29, a: 2.539021e-29}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0, y: 0, z: 1}
+  m_Origin: {x: -281, y: -13, z: 0}
+  m_Size: {x: 360, y: 176, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -364,7 +606,7 @@ MonoBehaviour:
   cd: 0.1
   movementSpeed: 8
   grid: {fileID: 1943415678}
-  grid2: {fileID: 1128826893}
+  tileGrid: {fileID: 1128826893}
 --- !u!58 &416069932
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1387,53 +1629,16 @@ MonoBehaviour:
   tileGrid: {fileID: 1128826893}
   moveGrid: {fileID: 1943415678}
   ground: {fileID: 11400000, guid: 1dddc54082eecad43b9cfb858c5c0ed9, type: 2}
-  grassTLC: {fileID: 11400000, guid: e8916d8c7ea2dc4439a04add05de99c7, type: 2}
-  grassT: {fileID: 11400000, guid: 4c295296a3571794d9726f8553e8bd7f, type: 2}
-  grassTRC: {fileID: 11400000, guid: 291971d18fc9da3448a30eceecb37beb, type: 2}
-  grassL: {fileID: 11400000, guid: f33ae53fb96888241b8f4f891f5769c0, type: 2}
-  grassM: {fileID: 11400000, guid: 93103648fab7ed64887b254cd9e3570d, type: 2}
-  grassR: {fileID: 11400000, guid: 44df886eaf00fa54ba6424eb2e9d2d59, type: 2}
-  grassBLC: {fileID: 11400000, guid: 302ca6896bce6fe4487d9b46e0d8f94f, type: 2}
-  grassB: {fileID: 11400000, guid: 72cd38c5e2452ef43996e7ede36b3ff3, type: 2}
-  grassBRC: {fileID: 11400000, guid: 561f66d481f30d7488c4376c9705567c, type: 2}
-  grassIBL: {fileID: 11400000, guid: 8763f848ad0c58e4fb9f4e55338fbfab, type: 2}
-  grassIBR: {fileID: 11400000, guid: e09db9955e09acb4e87f6ccfb655d0da, type: 2}
-  grassITL: {fileID: 11400000, guid: 40d2c3cfe174beb4e93dccbef1ff85b4, type: 2}
-  grassITR: {fileID: 11400000, guid: 86bd7a1235a26bf4da12d941cf906fca, type: 2}
-  grass2CL: {fileID: 11400000, guid: ddd164a8514589643b5061028a510b9b, type: 2}
-  grass2CR: {fileID: 11400000, guid: 8af6af5f49d3b044ba040032c7d63c40, type: 2}
-  grass2CU: {fileID: 11400000, guid: abf4042823062fe4fb89c9d2667c3c70, type: 2}
-  grass2CD: {fileID: 11400000, guid: 44f43c809951ffe44a7b66383211dd3a, type: 2}
-  grass1L: {fileID: 11400000, guid: c2ce1d99775a7e745bf507f4819a55c7, type: 2}
-  grass1R: {fileID: 11400000, guid: 35a4ed6369103be4485d41b566a2516d, type: 2}
-  grass1U: {fileID: 11400000, guid: c1f197757dcdb78438faf11e47bfaffd, type: 2}
-  grass1D: {fileID: 11400000, guid: 2ad5d219522752a4680d681eee1560b3, type: 2}
-  waterTLC: {fileID: 11400000, guid: bdd13c7f3f8fa3f44989eea8eaef2d66, type: 2}
-  waterT: {fileID: 11400000, guid: 1899df9c527c852499cca23bd4ef9a73, type: 2}
-  waterTRC: {fileID: 11400000, guid: 78e9c512f0003a84ebd7b828c876f1b5, type: 2}
-  waterL: {fileID: 11400000, guid: d208b706561a9324cac9537294a41a9d, type: 2}
-  waterM: {fileID: 11400000, guid: b78e23f9f7f29bf499cf2dde61fcc05b, type: 2}
-  waterR: {fileID: 11400000, guid: 0e2361c561e1e2d4e8bd22722a8a5425, type: 2}
-  waterBLC: {fileID: 11400000, guid: 92c6ac0374184f24d8f4e7e7184b2680, type: 2}
-  waterB: {fileID: 11400000, guid: 6101b4c25b3ed31488edc151d103ceda, type: 2}
-  waterBRC: {fileID: 11400000, guid: fdd502f779bb3cc4f80bdd052b7fd82a, type: 2}
-  waterIBL: {fileID: 11400000, guid: 1cab1cbf2be94004a942177bfa26254e, type: 2}
-  waterIBR: {fileID: 11400000, guid: cac532ce2ea157e418a0d48101a8b871, type: 2}
-  waterITL: {fileID: 11400000, guid: 54e32d462868ca84298c9e54f68fb176, type: 2}
-  waterITR: {fileID: 11400000, guid: 1603ab2d8f6ea00438ed3170429afced, type: 2}
-  water2CL: {fileID: 11400000, guid: 0431336e01936044ba605051d95ef77a, type: 2}
-  water2CR: {fileID: 11400000, guid: a8f77121d5342ee4998dad98cad330e9, type: 2}
-  water2CU: {fileID: 11400000, guid: 0c8fafaa2f43e194aa18c95fb262c21f, type: 2}
-  water2CD: {fileID: 11400000, guid: 3ddc028fd9b521f449e04d5586273e5f, type: 2}
-  water1L: {fileID: 11400000, guid: 27e54e69fae8df643ba4586b4927050d, type: 2}
-  water1R: {fileID: 11400000, guid: 7bff95821eb44334fae5d18b5764ed56, type: 2}
-  water1U: {fileID: 11400000, guid: 7261642f00570d74e97bf534b9d17148, type: 2}
-  water1D: {fileID: 11400000, guid: 247e3f50edb68244783be0ea7b9b458e, type: 2}
   groundMap: {fileID: 1053985352}
   grassMap: {fileID: 839259072}
-  obstacleMap: {fileID: 940158970}
   waterMap: {fileID: 63838774}
   activeMap: {fileID: 0}
+  grassTile: {fileID: 11400000, guid: 7a1da4802e3789342833a219f723431d, type: 2}
+  waterTile: {fileID: 11400000, guid: b84994e415e3101419429211a3fb3654, type: 2}
+  activeTile: {fileID: 0}
+  SIZE: 200
+  MAX_STEPS: 10
+  ODDS: 0.25
 --- !u!1 &1434708956
 GameObject:
   m_ObjectHideFlags: 0
